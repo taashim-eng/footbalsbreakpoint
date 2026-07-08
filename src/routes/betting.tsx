@@ -98,7 +98,7 @@ function Page() {
                     <CartesianGrid stroke="rgba(148,163,184,0.1)" />
                     <XAxis dataKey="minute" stroke="#94a3b8" fontSize={11} label={{ value: "Match minute", position: "insideBottom", offset: -4, fill: "#64748b", fontSize: 11 }} />
                     <YAxis stroke="#94a3b8" fontSize={11} domain={[0, 1]} tickFormatter={(v) => `${(v*100).toFixed(0)}%`} />
-                    <Tooltip contentStyle={darkTooltip} formatter={(v: number) => `${(v*100).toFixed(1)}%`} />
+                    <Tooltip contentStyle={darkTooltip} formatter={(v) => `${(Number(v)*100).toFixed(1)}%`} />
                     <ReferenceArea x1={65} x2={80} fill="#3b82f6" fillOpacity={0.1} label={{ value: "Break window", fill: "#94a3b8", fontSize: 10 }} />
                     <Line type="monotone" dataKey="groupBProb" stroke="#f59e0b" strokeWidth={2} dot={false} name="Group B implied win prob" />
                   </LineChart>
