@@ -8,7 +8,7 @@ import { PageTransition } from "@/components/dashboard/PageTransition";
 import { AnomalyGauge } from "@/components/dashboard/AnomalyGauge";
 import { cn } from "@/lib/utils";
 import {
-  ResponsiveContainer, LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ReferenceArea, RadarChart, PolarGrid, PolarAngleAxis, Radar, PolarRadiusAxis, BarChart, Bar,
+  ResponsiveContainer, LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ReferenceArea, RadarChart, PolarGrid, PolarAngleAxis, Radar, PolarRadiusAxis, BarChart, Bar, Cell,
 } from "recharts";
 
 const searchSchema = z.object({
@@ -203,7 +203,7 @@ function Page() {
                     <Tooltip contentStyle={darkTooltip} />
                     <Bar dataKey="value">
                       {match.shap.map((s, i) => (
-                        <cell key={i} />
+                        <Cell key={i} fill={s.value >= 0 ? "#ef4444" : "#10b981"} />
                       ))}
                     </Bar>
                   </BarChart>
@@ -227,7 +227,7 @@ function Page() {
                     <CartesianGrid stroke="rgba(148,163,184,0.1)" />
                     <XAxis dataKey="minute" stroke="#94a3b8" fontSize={11} />
                     <YAxis stroke="#94a3b8" fontSize={11} domain={[0, 1]} tickFormatter={(v) => `${(v*100).toFixed(0)}%`} />
-                    <Tooltip contentStyle={darkTooltip} formatter={(v: number) => `${(v*100).toFixed(1)}%`} />
+                    <Tooltip contentStyle={darkTooltip} formatter={(v) => `${(Number(v)*100).toFixed(1)}%`} />
                     <ReferenceArea x1={65} x2={80} fill="#3b82f6" fillOpacity={0.1} />
                     <Line type="monotone" dataKey="groupBProb" stroke="#f59e0b" strokeWidth={2} dot={false} />
                   </LineChart>
